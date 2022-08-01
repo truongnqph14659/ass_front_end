@@ -1,0 +1,88 @@
+{
+  "category": [
+    {
+      "id": 1,
+      "name": "Iphone"
+    },
+    {
+      "id": 2,
+      "name": "Sam sung"
+    },
+    {
+      "id": 3,
+      "name": "Oppo"
+    },
+    {
+      "id": 4,
+      "name": "Redmi"
+    }
+  ],
+  "products": [
+    {
+      "name": "OPPO A95 8GB-128GB1",
+      "originalPrice": 11000000,
+      "saleOffPrice": 10000000,
+      "categoryId": 3,
+      "feature": "ok",
+      "description": "ok",
+      "shortDescription": "6.43 inch, AMOLED, FHD+, 1080 x 2400 Pixels",
+      "image": "http://res.cloudinary.com/df6zs06nu/image/upload/v1658058205/pxd6bkzxfxhgqgebfgu8.jpg",
+      "id": 1
+    },
+    {
+      "name": "iPhone SE 2022 64GB ",
+      "originalPrice": 12000000,
+      "saleOffPrice": 11000000,
+      "categoryId": 1,
+      "feature": "4.7 inch, IPS LCD, HD, 1334 x 750 Pixels",
+      "description": "4.7 inch, IPS LCD, HD, 1334 x 750 Pixels",
+      "shortDescription": "ổn",
+      "image": "http://res.cloudinary.com/df6zs06nu/image/upload/v1658058205/pxd6bkzxfxhgqgebfgu8.jpg",
+      "id": 2
+    },
+    {
+      "name": "iPhone 13 Pro Max 128GB ",
+      "originalPrice": 27000000,
+      "saleOffPrice": 20000000,
+      "categoryId": 1,
+      "feature": "6.7 inch, OLED, Super Retina XDR, 2778 x 1284 Pixels",
+      "description": "6.7 inch, OLED, Super Retina XDR, 2778 x 1284 Pixels",
+      "shortDescription": "ổn",
+      "image": "http://res.cloudinary.com/df6zs06nu/image/upload/v1658058205/pxd6bkzxfxhgqgebfgu8.jpg",
+      "id": 3
+    },
+    {
+      "name": "Samsung Galaxy S22 Ultra 1",
+      "originalPrice": 11000000,
+      "saleOffPrice": 10000000,
+      "categoryId": 2,
+      "feature": "ok",
+      "description": "ok",
+      "shortDescription": "ổn",
+      "image": "http://res.cloudinary.com/df6zs06nu/image/upload/v1658058205/pxd6bkzxfxhgqgebfgu8.jpg",
+      "id": 4
+    }
+  ],
+  "posts": [
+    {
+      "id": 1,
+      "name": "javascript"
+    },
+    {
+      "id": 2,
+      "name": "php"
+    }
+  ],
+  "comment": [
+    {
+      "id": 1,
+      "name": "ok",
+      "postId": 1
+    },
+    {
+      "id": 2,
+      "name": "no",
+      "postId": 1
+    }
+  ]
+}

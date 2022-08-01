@@ -1,0 +1,50 @@
+<div class="flex mt-4 divide-x max-h-full">
+            <div class="w-[250px] flex-none">
+                ${Sidebar.render()}
+            </div>       
+            <div class="grow px-4">
+            <h1 class = "font-bold">Điện Thoại</h1>
+            <div class = "flex">
+                    <p class = "pt-[70px] font-bold">Bộ Lọc :</p>
+                    <div class="col-span-6 sm:col-span-3 m-10">
+                        <label for="country" class="block text-sm font-medium text-gray-700 pb-1">Danh Mục</label>
+                        <select id="country" name="country" autocomplete="country-name" class="mt-1 block w-[300px] py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                            ${category.data.map((item:any)=>{
+                                return /*html*/`
+                                    <option value = "${item.id}" id="option">${item.name}</option>
+                                `
+                            }).join('')}
+                        </select>
+                    </div>
+                </div>
+               <a href = "add/product"><button type="button" class="btn btn-success bg-[#198754]">Add</button></a>
+                <table class="table table-hover table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">Stt</th>
+                            <th scope="col">Tên Sản Phẩm</th>
+                            <th scope="col">Thành tiền</th>
+                            <th scope="col">Mô tả</th>
+                            <th scope="col">Hành động</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    ${response.map((item:any)=>{
+                        return/*html*/ `
+                            <tr>
+                                <th scope="row">${item.id}</th>
+                                <td>${item.name}</td>
+                                <td>${item.originalPrice}VNĐ</td>
+                                <td>${item.shortDescription}</td>
+                                <td>
+                                <a href="edit/product/${item.id}"><button type="button" class="btn btn-warning bg-[#ffc107]">Edit</button></a>
+                                    <button type="button" class="btn btn-danger bg-[#dc3545]" data-id = ${item.id}>Remove</button>
+                                </td>
+                            </tr>
+                        `
+                    }).join('')}
+                    </tbody>
+                </table>
+            </div>
+          </div> 
+        </div>
