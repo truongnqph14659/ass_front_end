@@ -9,8 +9,8 @@ const HomePage = {
     render: async () => {
         return /*html*/ `
             ${HeaderHome.render()}
-            <div class="mt-4 mx-[300px]">
-                <div class="col-sm-6 col-lg-4">
+            <div class="mt-4 container w-[80%]">
+                <div class="">
                     ${NavbarHome.render()}
                 </div>
             </div>

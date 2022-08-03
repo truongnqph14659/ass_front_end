@@ -18,7 +18,10 @@ const HeaderHome = {
                         <i class="fa-solid fa-cart-shopping"></i>
                         <a href="#">Giỏ hàng</a>
                     </li>
-                </ul>>
+                    <li>
+                        <a href="#">Đăng nhập</a><span>/</span><a href="#">Đăng ký</a>
+                    </li>
+                </ul>
             </div>
         `
     }
