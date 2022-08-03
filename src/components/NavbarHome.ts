@@ -10,7 +10,7 @@ const NavbarHome = {
                     <li><a href="#"><i class="fa-solid fa-house-user mr-[10px]"></i> Nhà thông minh <i class="fa-solid fa-chevron-right ml-[30px]"></i></a></li>
                 </ul>
                 <div>
-                    <img src="../../public/images/banner.png" style="width=1048px; height=382px" alt="banner..." />
+                    <img src="../../public/images/banner.png" style="width:100%; height=382px" alt="banner..." />
                 </div>
             </div>
         `
