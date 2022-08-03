@@ -1,6 +1,7 @@
 import './style.css'
 import Navigo from 'navigo';
 import HomePage from './pages/Home'
+import AdminPage from './pages/Admin';
 const router = new Navigo('/', {linksSelector: "a"})
 type ComponentBase = {
   render: (id:number) => Promise<string> | string,
@@ -15,6 +16,8 @@ const print =async (component: ComponentBase, id?:any) => {
 }
 
 router.on({
-  "/": () => print(HomePage)
+  "/": () => print(HomePage),
+  '/admin':()=>print(AdminPage),
+
 })
 router.resolve()
