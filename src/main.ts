@@ -7,6 +7,7 @@ import AdminListProductPage from './pages/AdminListProduct';
 import Signin from './pages/Signin';
 import Signup from './pages/Signup';
 import ShowCart from './pages/showCart';
+import Order from './pages/Order';
 const router = new Navigo('/', {linksSelector: "a"})
 type ComponentBase = {
   render: (id:number) => Promise<string> | string,
@@ -27,7 +28,8 @@ router.on({
   "/admin/productList": () => print(AdminListProductPage),
   '/signin':()=>print(Signin),
   '/signup':()=>print(Signup),
-  '/Show':()=>print(ShowCart)
+  '/Show':()=>print(ShowCart),
+  '/order':()=>print(Order),
 
 })
 router.resolve()
