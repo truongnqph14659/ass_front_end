@@ -61,6 +61,7 @@ const Signin = {
                         password:password
                     }
                     try {
+                      // sign in
                         const resault = await signin(dataInput)
                         console.log(resault);
                         if(resault){
