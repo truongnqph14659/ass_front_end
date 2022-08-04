@@ -2,6 +2,7 @@ import './style.css'
 import Navigo from 'navigo';
 import HomePage from './pages/Home'
 import AdminPage from './pages/Admin';
+import DetailPage from './pages/Detail';
 const router = new Navigo('/', {linksSelector: "a"})
 type ComponentBase = {
   render: (id:number) => Promise<string> | string,
@@ -9,14 +10,15 @@ type ComponentBase = {
 }
 
 const print =async (component: ComponentBase, id?:any) => {
-  document.getElementById('app')!.innerHTML =await component.render(id)
+  document.getElementById('app')!.innerHTML = await component.render(id)
   if(component.afterRender) {
     component.afterRender(id)
   }
 }
 
 router.on({
-  "/": () => print(HomePage),
+  "/": async () => print(await HomePage),
+  "/detail": () => print(DetailPage),
   '/admin':()=>print(AdminPage),
 
 })
