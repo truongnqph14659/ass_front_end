@@ -19,7 +19,7 @@ const HeaderHome = {
                         <a href="#">Giỏ hàng</a>
                     </li>
                     <li>
-                        <a href="#">Đăng nhập</a><span>/</span><a href="#">Đăng ký</a>
+                        <a href="/signin">Đăng nhập</a><span>/</span><a href="/signup">Đăng ký</a>
                     </li>
                 </ul>
             </div>
