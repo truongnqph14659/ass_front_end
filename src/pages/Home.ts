@@ -14,7 +14,7 @@ const HomePage = {
                     ${NavbarHome.render()}
                 </div>
             </div>
-            ${PhoneHome.render()}
+            ${await PhoneHome.render()}
             ${AccessoryHome.render()}
             ${LinhKienhome.render()}
         `
