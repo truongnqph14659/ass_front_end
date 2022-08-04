@@ -1,5 +1,6 @@
 const Cart = {
     render(){
+        /*show cart*/
         return /*html*/`
             <div class="container flex flex-col justify-center w-[50%]">
                 <div>
