@@ -4,6 +4,7 @@ import HomePage from './pages/Home'
 import AdminPage from './pages/Admin';
 import DetailPage from './pages/Detail';
 import AdminListProductPage from './pages/AdminListProduct';
+import ShowCart from './pages/showCart';
 const router = new Navigo('/', {linksSelector: "a"})
 type ComponentBase = {
   render: (id:number) => Promise<string> | string,
@@ -21,7 +22,8 @@ router.on({
   "/": async () => print(await HomePage),
   "/detail": () => print(DetailPage),
   '/admin':()=> print(AdminPage),
-  "/admin/productList": () => print(AdminListProductPage)
+  "/admin/productList": () => print(AdminListProductPage),
+  '/Show':()=>print(ShowCart)
 
 })
 router.resolve()
