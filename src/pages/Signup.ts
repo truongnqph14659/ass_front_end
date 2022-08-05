@@ -1,5 +1,5 @@
 import { signup } from '../api/user';
-import swal from 'sweetalert';
+import swal from 'sweetalert2';
 import HeaderHome from '../components/HeaderHome';
 const Signup = {
     async render(){
