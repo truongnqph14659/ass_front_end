@@ -1,6 +1,6 @@
 import { signin } from '../api/user';
 import HeaderHome from '../components/HeaderHome';
-import swal from 'sweetalert2';
+import swal from 'sweetalert';
 const Signin = {
     async render(){
        return/*html*/`
