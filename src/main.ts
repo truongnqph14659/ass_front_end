@@ -10,6 +10,7 @@ import ShowCart from './pages/showCart';
 import Order from './pages/Order';
 import Category from './pages/Category';
 import CreateCategory from './pages/CategoryAdd';
+import editCategory from './pages/CategoryUpdate';
 const router = new Navigo('/', {linksSelector: "a"})
 type ComponentBase = {
   render: (id:number) => Promise<string> | string,
@@ -47,6 +48,7 @@ router.on({
   '/order':()=>print(Order),
   '/admin/category':()=>print(Category),
   '/admin/category/add':()=>print(CreateCategory),
+  '/admin/category/:id':(data:any)=>print(editCategory,data.data.id),
 
 })
 router.resolve()
