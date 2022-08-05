@@ -9,7 +9,12 @@ const DetailPage = {
             ${MenuHeader.render()}
             ${ await DetailProduct.render(id)}
         `
-    }
+    },
+    afterRender(id:any){
+        if (DetailProduct.afterRender) {
+            DetailProduct.afterRender(id)
+        }
+      }
 }
 
 export default DetailPage;
