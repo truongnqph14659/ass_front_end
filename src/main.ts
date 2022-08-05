@@ -8,6 +8,7 @@ import Signin from './pages/Signin';
 import Signup from './pages/Signup';
 import ShowCart from './pages/showCart';
 import Order from './pages/Order';
+import Category from './pages/Category';
 const router = new Navigo('/', {linksSelector: "a"})
 type ComponentBase = {
   render: (id:number) => Promise<string> | string,
@@ -20,16 +21,30 @@ const print =async (component: ComponentBase, id?:any) => {
     component.afterRender(id)
   }
 }
-
+// router.on("/admin", ()=>print(AdminPage), {
+//   before(done, params) {
+//       if (JSON.parse(localStorage.getItem('user') || "false") ) {
+//           const role = JSON.parse(localStorage.getItem('user')|| "false").role;
+//           if (role == 1) {
+//               done();
+//           } else {
+//               document.location.href = "/"
+//           }
+//       } else {
+//           document.location.href = "/"
+//       }
+//   }
+// })
 router.on({
   "/": async () => print(await HomePage),
-  "/detail": () => print(DetailPage),
+  "/detail/:id": (data:any) => print(DetailPage,data.data.id),
   '/admin':()=> print(AdminPage),
   "/admin/productList": () => print(AdminListProductPage),
   '/signin':()=>print(Signin),
   '/signup':()=>print(Signup),
   '/Show':()=>print(ShowCart),
   '/order':()=>print(Order),
+  '/admin/category':()=>print(Category),
 
 })
 router.resolve()

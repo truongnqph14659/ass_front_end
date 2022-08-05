@@ -1,5 +1,18 @@
 const HeaderHome = {
     render: () => {
+        let userAcc
+        if (JSON.parse(localStorage.getItem('user') || "false") && JSON.parse(localStorage.getItem('user')|| "false").role == 0 ){
+            const name = JSON.parse(localStorage.getItem('user')|| "false").name;
+            userAcc = `
+            <span>${name}</span>
+            <i class="fa-solid fa-wheelchair cursor-pointer"></i>
+          ` 
+        }else{
+            userAcc=`
+             <a href="/signin">Đăng nhập</a><span>/</span><a href="/signup">Đăng ký</a>
+            `
+        }
+
         return /* html */ `
             <div class="flex bg-[#d70018] justify-around items-center">
                 <img class="w-[64px] p-2" src="../../public/images/logo.png" alt="" />
@@ -19,7 +32,7 @@ const HeaderHome = {
                         <a href="#">Giỏ hàng</a>
                     </li>
                     <li>
-                        <a href="/signin">Đăng nhập</a><span>/</span><a href="/signup">Đăng ký</a>
+                        ${userAcc}
                     </li>
                 </ul>
             </div>
