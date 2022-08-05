@@ -1,8 +1,8 @@
 import AdminHeader from "../components/admin/HeaderAdmin";
 import Sidebar from "../components/admin/SiderAdmin";
-import ListCategory from "../components/admin/listCategory";
+import AddCategory from "../components/admin/AddCategory";
 
-const Category = {
+const CreateCategory = {
     
     async render(){
         return /* html */ `
@@ -12,14 +12,15 @@ const Category = {
                 ${Sidebar.render()}
             </div>
             <div class="grow px-4">
-                ${await ListCategory.render()}
+                ${await AddCategory.render()}
             </div>
+            
         `
     },
     afterRender(){
-        if(ListCategory.afterRender){
-                ListCategory.afterRender()
+        if(AddCategory.afterRender){
+                AddCategory.afterRender()
         }
     }
 }
-export default Category;
+export default CreateCategory;

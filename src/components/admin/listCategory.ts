@@ -18,15 +18,34 @@ import axios from "axios"
                     <td>${index + 1}</td>
                     <td>${item.name}</td>
                     <td>
-                        <button class="btn btn-danger btn-remove" data-id=${item.id}>Remove</button> <br>
+                        <button class="btn btn-danger btn-remove" data-id=${item._id}>Remove</button> <br>
                         </td>
                         <td>
-                        <a href="/categoryProduct/${item.id}/edit" class="btn btn-info btn-update">Update</a></td>
+                        <a href="/categoryProduct/${item._id}/edit" class="btn btn-info btn-update">Update</a></td>
                 </tr>
             `).join("")}
         </tbody>
     </table>
-        `
-    }
- }
+    `
+},
+afterRender(){
+    const btns = document.querySelectorAll('.btn-remove')
+    console.log(btns);
+    btns.forEach((btn) => {
+        const id = btn.dataset.id;
+        console.log(id);
+        
+
+        btn.addEventListener('click', async() => {
+            if(btn.classList.contains('btn-remove')){
+                const confirm = window.confirm('Are you sure remove?')
+                if(confirm){
+                    axios.delete(`http://localhost:8080/api/category/${id}`)
+                }
+                location.href='/admin/category'
+            }
+        })
+    })
+}
+}
  export default ListCategory;
