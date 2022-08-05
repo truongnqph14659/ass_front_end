@@ -21,7 +21,7 @@ import axios from "axios"
                         <button class="btn btn-danger btn-remove" data-id=${item._id}>Remove</button> <br>
                         </td>
                         <td>
-                        <a href="/categoryProduct/${item._id}/edit" class="btn btn-info btn-update">Update</a></td>
+                        <a href="/admin/category/${item._id}" class="btn btn-info btn-update">Update</a></td>
                 </tr>
             `).join("")}
         </tbody>
