@@ -8,6 +8,7 @@ import Signin from './pages/Signin';
 import Signup from './pages/Signup';
 import ShowCart from './pages/showCart';
 import Order from './pages/Order';
+import Category from './pages/Category';
 const router = new Navigo('/', {linksSelector: "a"})
 type ComponentBase = {
   render: (id:number) => Promise<string> | string,
@@ -43,6 +44,7 @@ router.on({
   '/signup':()=>print(Signup),
   '/Show':()=>print(ShowCart),
   '/order':()=>print(Order),
+  '/admin/category':()=>print(Category),
 
 })
 router.resolve()
