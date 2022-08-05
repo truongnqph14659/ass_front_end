@@ -3,11 +3,11 @@ import HeaderHome from "../components/HeaderHome"
 import MenuHeader from "../components/MenuHeader";
 
 const DetailPage = {
-    render: async () => {
+    render: async (id:any) => {
         return /*html*/ `
             ${HeaderHome.render()}
             ${MenuHeader.render()}
-            ${DetailProduct.render()}
+            ${ await DetailProduct.render(id)}
         `
     }
 }
