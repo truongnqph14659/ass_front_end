@@ -36,7 +36,8 @@ const print =async (component: ComponentBase, id?:any) => {
 // })
 router.on({
   "/": async () => print(await HomePage),
-  "/detail": () => print(DetailPage),
+  "/detail/:id": (data:any) => print(DetailPage,data.data.id),
+  '/admin':()=> print(AdminPage),
   "/admin/productList": () => print(AdminListProductPage),
   '/signin':()=>print(Signin),
   '/signup':()=>print(Signup),
