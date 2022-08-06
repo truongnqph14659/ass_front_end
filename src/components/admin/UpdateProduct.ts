@@ -1,49 +1,42 @@
 import axios from "axios";
-import AdminHeader from "./HeaderAdmin";
-import Sidebar from "./SiderAdmin";
- const AddProduct = {
-    async render(){
+ const UpdateProduct = {
+    async render(_id:any){
         const {data} = await axios.get('http://localhost:8080/api/category')
+        const {data: product} = await axios.get(`http://localhost:8080/api/products/${_id}`)
         return /* html */ `
-                ${AdminHeader.render()}
-                <div class="flex mt-4 divide-x">
-                    <div class="w-[250px] flex-none">
-                        ${Sidebar.render()}
-                    </div>
                     <div class="grow px-4">
-                    <h1><b>Add Product</b></h1>
+                    <h1><b>Update Product</b></h1>
                     <div class="max-w-full mx-auto py-6 sm:px-6 lg:px-8">
                         <form id="formAdd">
                             <div class="mb-3">
                                 <label for="" class="form-label">Product Name</label>
-                                <input type="text" class="form-control" id="product-name">
+                                <input type="text" class="form-control" id="product-name" value="${product.name}">
                             </div>
                             <div class="mb-3">
                                 <label for="" class="form-label">Image</label>
-                                <input type="file" class="form-control" name="image" id="product-img">
+                                <input type="file" class="form-control" name="image" id="product-img" value="${product.image}">
                             </div>
                             <div class="mb-3">
                                 <label for="" class="form-label">Category Name</label>
                                 <select class="form-control" id="categoryName">
                                     ${data.map((categoryProduct) => /* html */ `
-                                        <option value="${categoryProduct._id}">${categoryProduct.name}</option>
+                                        <option ${categoryProduct._id == product.category ? 'selected' : ''} value="${categoryProduct._id}">${categoryProduct.name}</option>
                                     `).join("")}
                                 </select> <br>
                             </div>
                             <div class="mb-3">
                                 <label for="" class="form-label">Price</label>
-                                <input type="number" class="form-control" id="product-price">
+                                <input type="number" class="form-control" id="product-price" value="${product.price}">
                             </div>
-                            <button class="btn btn-primary">Add</button>
+                            <button class="btn btn-primary">Update</button>
                         </form>
                     </div>
                     </div>
-                </div>
                 
         
         `
     },
-    afterRender(){
+    afterRender(_id:any){
         const formAdd = document.querySelector("#formAdd");
         
         formAdd.addEventListener("submit", async(e)=>{
@@ -56,9 +49,9 @@ import Sidebar from "./SiderAdmin";
                 
             }
             console.log(product)
-            const data = await axios.post("http://localhost:8080/api/products",product)
+            const data = await axios.patch(`http://localhost:8080/api/products/${_id}`,product)
             location.href = "/admin/productList"
         })
     }
  }
- export default AddProduct;
+ export default UpdateProduct;

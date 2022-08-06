@@ -12,6 +12,7 @@ const AdminListProductPage = {
             </div>
             <div class="grow px-4">
             <h1><b>List Product</b></h1>
+            <button class="btn btn-success my-3">Add Product</button>
             <table class="table table-bordered mt-3">
             <thead>
                 <tr>
@@ -33,7 +34,7 @@ const AdminListProductPage = {
                             <button class="btn btn-danger btn-remove" data-id=${item._id}>Remove</button> <br>
                         </td>
                         <td>
-                            <a href="/products/${item._id}" class="btn btn-info btn-update">Update</a>
+                            <a href="/admin/products/${item._id}" class="btn btn-info btn-update">Update</a>
                         </td>
                     </tr>
                 `).join("")}
