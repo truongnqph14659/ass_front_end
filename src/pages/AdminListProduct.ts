@@ -12,7 +12,7 @@ const AdminListProductPage = {
             </div>
             <div class="grow px-4">
             <h1><b>List Product</b></h1>
-            <button class="btn btn-success my-3">Add Product</button>
+            <a href="/admin/product/add" class="btn btn-primary my-3" >Add Product</a>
             <table class="table table-bordered mt-3">
             <thead>
                 <tr>
