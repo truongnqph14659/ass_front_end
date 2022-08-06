@@ -76,10 +76,10 @@ const Signin = {
                               }, 1000)
                         }  
                     } catch (error:any) {
-                        swal({
-                            title: error,
-                            dangerMode: false,
-                        })
+                        // swal({
+                        //     title: error,
+                        //     dangerMode: false,
+                        // })
                     }
                 }
             })

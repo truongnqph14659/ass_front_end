@@ -24,6 +24,6 @@
     "jquery-validation": "^1.19.5",
     "navigo": "^8.11.1",
     "nodemon": "^2.0.19",
-    "sweetalert2": "^11.4.23"
+    "sweetalert": "^2.1.2"
   }
 }

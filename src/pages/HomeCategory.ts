@@ -2,11 +2,11 @@ import AccessoryHome from "../components/AccessoryHome";
 import HeaderHome from "../components/HeaderHome";
 import LinhKienhome from "../components/LinhKienhome";
 import NavbarHome from "../components/NavbarHome";
-import PhoneHome from "../components/PhoneHome";
+import CategoryHome from "../components/CategoryHome";
 
 
-const HomePage = {
-    render: async () => {
+const HomeCategory = {
+    render: async (id:any) => {
         return /*html*/ `
             ${HeaderHome.render()}
             <div class="mt-4 container w-[80%]">
@@ -14,11 +14,11 @@ const HomePage = {
                     ${await NavbarHome.render()}
                 </div>
             </div>
-            ${await PhoneHome.render()}
+            ${await CategoryHome.render(id)}
             ${AccessoryHome.render()}
             ${LinhKienhome.render()}
         `
     }
 }
 
-export default HomePage;
+export default HomeCategory;
