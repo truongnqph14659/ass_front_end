@@ -4,32 +4,41 @@ import axios from "axios";
         const {data} = await axios.get(`http://localhost:8080/api/category/${_id}`)
         return /* html */ `
         <h1 class="title text-4xl text-center text-bold py-3"> Form Category Update</h1>
-        <form id="formAdd">
+        <form name='add_category'>
             <div class="px-2">
                 <label >Name Category</label>
-                <input type="text" id="category-name" class="form-control" placeholder="" value="${data.category.name}">
+                <input type="text" id="category-name"  name="category" class="form-control" placeholder="" value="${data.category.name}">
             </div>
             <br>
             <button class="btn btn-success pr-2">Submit</button>
         </form>
-        
         `
     },
-    afterRender(_id:any){
-        const formAdd = document.querySelector("#formAdd");
-        
-        formAdd.addEventListener("submit", async(e)=>{
-            e.preventDefault();
-            // const a = document.querySelector("#category-name")
-            // console.log(a)
-            const category ={
-                name: document.querySelector("#category-name").value,
-                
-            }
-            const data = await axios.patch(`http://localhost:8080/api/category/${_id}`,category)
-            location.href='/admin/category'
-        })
+    afterRender: async(_id:any)=>{
+        $(function () {
+            (<any>$("form[name='add_category']")).validate({
+              rules: {
+                category: {
+                  required: true,
+                  minlength: 5,
+                }
+              },
+              messages: {
+                category: {
+                  required: "không được bỏ trống",
+                  minlength: "trên 5 ký tự",
+                },
+              },
+              submitHandler: async function (form:any,event:any) {
+                event.preventDefault()
+                const category ={
+                    name: document.querySelector("#category-name").value,    
+                }
+                const data = await axios.patch(`http://localhost:8080/api/category/${_id}`,category)
+                location.href = "/admin/category"     
+            }     
+            });
+          })
     }
  }
-
  export default updateCategory;
