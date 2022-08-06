@@ -45,13 +45,24 @@ import Sidebar from "./SiderAdmin";
     },
     afterRender(){
         const formAdd = document.querySelector("#formAdd");
-        
+        const imgUpload:any = document.querySelector("#product-img");
+        const CLOUDINARY_API = "https://api.cloudinary.com/v1_1/dxvlhyxvc/image/upload";
+        const CLOUDINARY_PRESET = "z4139i5y ";
         formAdd.addEventListener("submit", async(e)=>{
             e.preventDefault();
+            const file = imgUpload.files[0];
+            const formData = new FormData();
+            formData.append("file", file);
+            formData.append("upload_preset", CLOUDINARY_PRESET);
+            const response = await axios.post(CLOUDINARY_API, formData, {
+                headers: {
+                    "content-type": "application/form-data",
+                },
+            });            
             const product ={
                 name: document.querySelector("#product-name").value,
                 price: document.querySelector("#product-price").value,
-                image: document.querySelector("#product-img").value,
+                image: response.data.url,
                 category: document.querySelector("#categoryName").value
                 
             }
