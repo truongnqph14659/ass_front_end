@@ -13,6 +13,7 @@ import CreateCategory from './pages/CategoryAdd';
 import editCategory from './pages/CategoryUpdate';
 import AddProduct from './components/admin/AddProduct';
 import AdminCreateProductPage from './pages/AdminEditProduct';
+import HomeCategory from './pages/HomeCategory';
 const router = new Navigo('/', {linksSelector: "a"})
 type ComponentBase = {
   render: (id:number) => Promise<string> | string,
@@ -53,6 +54,7 @@ router.on({
   '/admin/category':()=>print(Category),
   '/admin/category/add':()=>print(CreateCategory),
   '/admin/category/:id':(data:any)=>print(editCategory,data.data.id),
+  '/category/:id':(data:any)=>print(HomeCategory,data.data.id),
 
 })
 router.resolve()
