@@ -33,7 +33,7 @@ const AdminListProductPage = {
                             <button class="btn btn-danger btn-remove" data-id=${item._id}>Remove</button> <br>
                         </td>
                         <td>
-                            <a href="/products/${item._id}" class="btn btn-info btn-update">Update</a>
+                            <a href="/admin/products/${item._id}" class="btn btn-info btn-update">Update</a>
                         </td>
                     </tr>
                 `).join("")}
