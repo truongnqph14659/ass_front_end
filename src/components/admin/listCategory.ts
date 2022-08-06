@@ -4,6 +4,7 @@ import axios from "axios"
       
         const { data } = await axios.get('http://localhost:8080/api/Category'); 
         return /* html */ `
+        <a href="/admin/category/add" class="btn btn-warning my-3" >Add Category</a>
         <table class="table table-tripped">
         <thead>
             <tr>
