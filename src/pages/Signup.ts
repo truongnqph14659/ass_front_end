@@ -1,5 +1,5 @@
 import { signup } from '../api/user';
-import swal from 'sweetalert';
+// import swal from 'sweetalert';
 import HeaderHome from '../components/HeaderHome';
 const Signup = {
     async render(){
@@ -100,10 +100,10 @@ const Signup = {
                             },1000)
                         }  
                     } catch (error:any) {
-                        swal({
-                            title: error,
-                            dangerMode: false,
-                        })
+                        // swal({
+                        //     title: error,
+                        //     dangerMode: false,
+                        // })
                     }
                 }
             })
