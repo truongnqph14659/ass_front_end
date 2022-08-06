@@ -28,7 +28,7 @@ const AdminListProductPage = {
                     <tr>
                         <td>${index + 1}</td>
                         <td>${item.name}</td>
-                        <td><img src="${item.image}" alt="hiiii" /></td>
+                        <td><img src="${item.image}" width="150px" alt="hiiii" /></td>
                         <td>${item.price}</td>
                         <td>
                             <button class="btn btn-danger btn-remove" data-id=${item._id}>Remove</button> <br>
