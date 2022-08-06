@@ -1,6 +1,6 @@
 import { signin } from '../api/user';
 import HeaderHome from '../components/HeaderHome';
-import swal from 'sweetalert';
+// import swal from 'sweetalert';
 const Signin = {
     async render(){
        return/*html*/`
@@ -76,10 +76,10 @@ const Signin = {
                               }, 1000)
                         }  
                     } catch (error:any) {
-                        swal({
-                            title: error,
-                            dangerMode: false,
-                        })
+                        // swal({
+                        //     title: error,
+                        //     dangerMode: false,
+                        // })
                     }
                 }
             })
