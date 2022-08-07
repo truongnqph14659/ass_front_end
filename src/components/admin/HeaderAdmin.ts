@@ -1,4 +1,5 @@
 const AdminHeader = {
+
 	render: () => {
 		return (
             /*html*/`
@@ -8,7 +9,7 @@ const AdminHeader = {
                         <input class="form-control me-2 " size="60px" type="search" placeholder="Search" aria-label="Search">
                         </form>
                         <div>
-                        <span>Xin chào Admin</span>
+                        <span>Xin chào ${JSON.parse(localStorage.getItem('user') || "false").name}</span>
                         <i class="fa-solid cursor-pointer text-2xl lognout fa-arrow-right-from-bracket"></i>
                         </div>
                 </div>

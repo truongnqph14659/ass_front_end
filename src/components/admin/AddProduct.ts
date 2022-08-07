@@ -1,3 +1,4 @@
+import { errorShow, sendHeader } from './../../api/user';
 import axios from "axios";
 import AdminHeader from "./HeaderAdmin";
 import Sidebar from "./SiderAdmin";
@@ -25,7 +26,7 @@ import Sidebar from "./SiderAdmin";
                             <div class="mb-3">
                                 <label for="" class="form-label">Category Name</label>
                                 <select class="form-control" id="categoryName">
-                                    ${data.map((categoryProduct) => /* html */ `
+                                    ${data.map((categoryProduct:any) => /* html */ `
                                         <option value="${categoryProduct._id}">${categoryProduct.name}</option>
                                     `).join("")}
                                 </select> <br>
@@ -80,15 +81,19 @@ import Sidebar from "./SiderAdmin";
                         },
                     });            
                     const product ={
-                        name: document.querySelector("#product-name").value,
-                        price: document.querySelector("#product-price").value,
+                        name: (<HTMLInputElement>document.querySelector("#product-name")).value,
+                        price: (<HTMLInputElement>document.querySelector("#product-price")).value,
                         image: response.data.url,
-                        category: document.querySelector("#categoryName").value
+                        category: (<HTMLInputElement>document.querySelector("#categoryName")).value
                         
                     }
-                    console.log(product)
-                    const data = await axios.post("http://localhost:8080/api/products",product)
-                    location.href = "/admin/productList" 
+                    try {
+                        const data = await axios.post("http://localhost:8080/api/products",product,sendHeader)
+                        location.href = "/admin/productList" 
+                    } catch (error) {
+                        errorShow(error)
+                    }
+                   
                 }     
             });
           })

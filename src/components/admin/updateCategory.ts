@@ -1,3 +1,4 @@
+import { sendHeader, errorShow } from './../../api/user';
 import axios from "axios";
  const updateCategory = {
     async render(_id:any){
@@ -32,10 +33,14 @@ import axios from "axios";
               submitHandler: async function (form:any,event:any) {
                 event.preventDefault()
                 const category ={
-                    name: document.querySelector("#category-name").value,    
+                    name: (<HTMLInputElement>document.querySelector("#category-name")).value,    
                 }
-                const data = await axios.patch(`http://localhost:8080/api/category/${_id}`,category)
-                location.href = "/admin/category"     
+                try {
+                  const data = await axios.patch(`http://localhost:8080/api/category/${_id}`,category,sendHeader)
+                  location.href = "/admin/category"
+                } catch (error) {
+                  errorShow(error)
+                } 
             }     
             });
           })

@@ -1,3 +1,4 @@
+import { sendHeader, errorShow } from './../../api/user';
 import axios from "axios";
  const UpdateProduct = {
     async render(_id:any){
@@ -19,7 +20,7 @@ import axios from "axios";
                             <div class="mb-3">
                                 <label for="" class="form-label">Category Name</label>
                                 <select class="form-control" id="categoryName">
-                                    ${data.map((categoryProduct) => /* html */ `
+                                    ${data.map((categoryProduct:any) => /* html */ `
                                         <option ${categoryProduct._id == product.category ? 'selected' : ''} value="${categoryProduct._id}">${categoryProduct.name}</option>
                                     `).join("")}
                                 </select> <br>
@@ -63,7 +64,7 @@ import axios from "axios";
         const CLOUDINARY_API = "https://api.cloudinary.com/v1_1/dxvlhyxvc/image/upload";
         const CLOUDINARY_PRESET = "z4139i5y ";
         
-          const formEdit = document.querySelector("#formEdit")
+          const formEdit:any = document.querySelector("#formEdit")
             let img = formEdit?.dataset.img
             const file = imgUpload.files[0];
             if(file) {
@@ -78,15 +79,19 @@ import axios from "axios";
                 img = response.data.url;
             }
             const product ={
-                name: document.querySelector("#product-name").value,
-                price: document.querySelector("#product-price").value,
+                name: (<HTMLInputElement>document.querySelector("#product-name")).value,
+                price: (<HTMLInputElement>document.querySelector("#product-price")).value,
                 image: img,
-                category: document.querySelector("#categoryName").value
+                category: (<HTMLInputElement>document.querySelector("#categoryName")).value
                 
             }
-            console.log(product)
-            const data = await axios.patch(`http://localhost:8080/api/products/${_id}`,product);
-            location.href = "/admin/productList";
+            try {
+              const data = await axios.patch(`http://localhost:8080/api/products/${_id}`,product,sendHeader);
+              location.href = "/admin/productList";
+            } catch (error) {
+              errorShow(error)
+            }
+        
                 }     
             });
           })

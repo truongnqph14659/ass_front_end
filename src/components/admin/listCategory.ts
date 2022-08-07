@@ -1,3 +1,4 @@
+import { sendHeader, errorShow } from './../../api/user';
 import axios from "axios"
  const ListCategory = {
     async render(){
@@ -37,9 +38,14 @@ afterRender(){
             if(btn.classList.contains('btn-remove')){
                 const confirm = window.confirm('Are you sure remove?')
                 if(confirm){
-                    axios.delete(`http://localhost:8080/api/category/${id}`)
+                    try {
+                        await axios.delete(`http://localhost:8080/api/category/${id}`,sendHeader)
+                        location.href='/admin/category'
+                    } catch (error) {
+                        errorShow(error)
+                    }
                 }
-                location.href='/admin/category'
+       
             }
         })
     })

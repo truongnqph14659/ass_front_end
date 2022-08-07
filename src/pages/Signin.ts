@@ -68,7 +68,7 @@ const Signin = {
                             localStorage.setItem('user', JSON.stringify(resault.data))
                             let user = JSON.parse(localStorage.getItem('user') || "false")
                               setTimeout(() => {
-                                    if (user.role == 1) {
+                                    if (user.role == 1 || user.role == 2) {
                                       window.location.href = "/admin";
                                     } else {
                                       window.location.href = "/";
@@ -76,10 +76,10 @@ const Signin = {
                               }, 1000)
                         }  
                     } catch (error:any) {
-                        // swal({
-                        //     title: error,
-                        //     dangerMode: false,
-                        // })
+                        swal({
+                            title: error,
+                            dangerMode: false,
+                        })
                     }
                 }
             })
