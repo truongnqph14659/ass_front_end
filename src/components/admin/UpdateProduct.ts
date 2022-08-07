@@ -7,7 +7,7 @@ import axios from "axios";
                     <div class="grow px-4">
                     <h1><b>Update Product</b></h1>
                     <div class="max-w-full mx-auto py-6 sm:px-6 lg:px-8">
-                        <form id="formAdd" data-img="${product.image}">
+                        <form name="update_product" data-img="${product.image}">
                             <div class="mb-3">
                                 <label for="" class="form-label">Product Name</label>
                                 <input type="text" class="form-control" id="product-name" value="${product.name}">

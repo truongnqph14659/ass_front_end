@@ -13,14 +13,14 @@ import Sidebar from "./SiderAdmin";
                     <div class="grow px-4">
                     <h1><b>Add Product</b></h1>
                     <div class="max-w-full mx-auto py-6 sm:px-6 lg:px-8">
-                        <form id="formAdd">
+                        <form name="add_product">
                             <div class="mb-3">
                                 <label for="" class="form-label">Product Name</label>
-                                <input type="text" class="form-control" id="product-name">
+                                <input type="text" class="form-control" name="product_name" id="product-name">
                             </div>
                             <div class="mb-3">
                                 <label for="" class="form-label">Image</label>
-                                <input type="file" class="form-control" name="image" id="product-img">
+                                <input type="file" class="form-control" id="product-img">
                             </div>
                             <div class="mb-3">
                                 <label for="" class="form-label">Category Name</label>
@@ -32,7 +32,7 @@ import Sidebar from "./SiderAdmin";
                             </div>
                             <div class="mb-3">
                                 <label for="" class="form-label">Price</label>
-                                <input type="number" class="form-control" id="product-price">
+                                <input type="number" class="form-control" name="product_price" id="product-price">
                             </div>
                             <button class="btn btn-primary">Add</button>
                         </form>
@@ -43,33 +43,56 @@ import Sidebar from "./SiderAdmin";
         
         `
     },
-    afterRender(){
-        const formAdd = document.querySelector("#formAdd");
-        const imgUpload:any = document.querySelector("#product-img");
-        const CLOUDINARY_API = "https://api.cloudinary.com/v1_1/dxvlhyxvc/image/upload";
-        const CLOUDINARY_PRESET = "z4139i5y ";
-        formAdd.addEventListener("submit", async(e)=>{
-            e.preventDefault();
-            const file = imgUpload.files[0];
-            const formData = new FormData();
-            formData.append("file", file);
-            formData.append("upload_preset", CLOUDINARY_PRESET);
-            const response = await axios.post(CLOUDINARY_API, formData, {
-                headers: {
-                    "content-type": "application/form-data",
+    async afterRender(){
+        $(function () {
+            (<any>$("form[name='add_product']")).validate({
+              rules: {
+                product_name: {
+                  required: true,
+                  minlength: 5,
                 },
-            });            
-            const product ={
-                name: document.querySelector("#product-name").value,
-                price: document.querySelector("#product-price").value,
-                image: response.data.url,
-                category: document.querySelector("#categoryName").value
+                  product_price: {
+                    required: true,
+                  }
+              },
+              messages: {
+                product_name: {
+                  required: "không được bỏ trống",
+                  minlength: "trên 5 ký tự",
+                },
+                  product_price: {
+                    required: "không được bỏ trống",
+                  },
+              },
+              submitHandler: async function (form:any,event:any) {
+                    event.preventDefault()
+                    const imgUpload:any = document.querySelector("#product-img");
+                    const CLOUDINARY_API = "https://api.cloudinary.com/v1_1/dxvlhyxvc/image/upload";
+                    const CLOUDINARY_PRESET = "z4139i5y ";
                 
-            }
-            console.log(product)
-            const data = await axios.post("http://localhost:8080/api/products",product)
-            location.href = "/admin/productList"
-        })
+                    const file = imgUpload.files[0];
+                    const formData = new FormData();
+                    formData.append("file", file);
+                    formData.append("upload_preset", CLOUDINARY_PRESET);
+                    const response = await axios.post(CLOUDINARY_API, formData, {
+                        headers: {
+                            "content-type": "application/form-data",
+                        },
+                    });            
+                    const product ={
+                        name: document.querySelector("#product-name").value,
+                        price: document.querySelector("#product-price").value,
+                        image: response.data.url,
+                        category: document.querySelector("#categoryName").value
+                        
+                    }
+                    console.log(product)
+                    const data = await axios.post("http://localhost:8080/api/products",product)
+                    location.href = "/admin/productList" 
+                }     
+            });
+          })
+        
     }
  }
  export default AddProduct;
