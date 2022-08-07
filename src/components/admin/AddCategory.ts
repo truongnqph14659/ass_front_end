@@ -4,20 +4,33 @@ import axios from "axios";
     async render(){
         return /* html */ `
         <h1 class="title text-4xl text-center text-bold py-3"> Form Category ADD</h1>
-        <form id="formAdd">
+        <form  name='add_category'>
             <div class="px-2">
                 <label >Name Category</label>
-                <input type="text" id="category-name" class="form-control" placeholder="">
+                <input type="text" id="category-name"  name="category" class="form-control" placeholder="">
             </div>
             <br>
             <button class="btn btn-success pr-2">Submit</button>
         </form>
         `
     },
-    afterRender(){
-        const formAdd:any = document.querySelector("#formAdd");
-        formAdd.addEventListener("submit", async(e:any)=>{
-            e.preventDefault();
+    afterRender:async() => {
+        $(function () {
+            (<any>$("form[name='add_category']")).validate({
+              rules: {
+                category: {
+                  required: true,
+                  minlength: 5,
+                }
+              },
+              messages: {
+                category: {
+                  required: "không được bỏ trống",
+                  minlength: "trên 5 ký tự",
+                },
+              },
+              submitHandler: async function (form:any,event:any) {
+                event.preventDefault()
             const category ={
                 name: (<HTMLInputElement>document.querySelector("#category-name")).value,
             }
@@ -26,8 +39,10 @@ import axios from "axios";
                 location.href='/admin/category'
             } catch (error:any) {
                 errorShow(error)
-            }
-        })
-    }
- }
- export default AddCategory;
+            } 
+        }     
+        });
+      })
+}
+}
+export default AddCategory;
