@@ -7,10 +7,10 @@ import axios from "axios";
                     <div class="grow px-4">
                     <h1><b>Update Product</b></h1>
                     <div class="max-w-full mx-auto py-6 sm:px-6 lg:px-8">
-                        <form id="formAdd" data-img="${product.image}">
+                        <form name="update_product" id="formEdit" data-img="${product.image}">
                             <div class="mb-3">
                                 <label for="" class="form-label">Product Name</label>
-                                <input type="text" class="form-control" id="product-name" value="${product.name}">
+                                <input type="text" class="form-control" name="product_name" id="product-name" value="${product.name}">
                             </div>
                             <div class="mb-3">
                                 <label for="" class="form-label">Image</label>
@@ -26,7 +26,7 @@ import axios from "axios";
                             </div>
                             <div class="mb-3">
                                 <label for="" class="form-label">Price</label>
-                                <input type="number" class="form-control" id="product-price" value="${product.price}">
+                                <input type="number" class="form-control" id="product-price" name="product_price" value="${product.price}">
                             </div>
                             <button class="btn btn-primary">Update</button>
                         </form>
@@ -36,14 +36,35 @@ import axios from "axios";
         
         `
     },
-    afterRender(_id:any){
-        const formAdd = document.querySelector("#formAdd");
-        const imgUpload:any = document.querySelector("#product-img");
+    async afterRender(_id:any){
+        $(function () {
+            (<any>$("form[name='update_product']")).validate({
+              rules: {
+                product_name: {
+                  required: true,
+                  minlength: 5,
+                },
+                  product_price: {
+                    required: true,
+                  }
+              },
+              messages: {
+                product_name: {
+                  required: "không được bỏ trống",
+                  minlength: "trên 5 ký tự",
+                },
+                  product_price: {
+                    required: "không được bỏ trống",
+                  },
+              },
+              submitHandler: async function (form:any,event:any) {
+                    event.preventDefault()
+                    const imgUpload:any = document.querySelector("#product-img");
         const CLOUDINARY_API = "https://api.cloudinary.com/v1_1/dxvlhyxvc/image/upload";
         const CLOUDINARY_PRESET = "z4139i5y ";
-        formAdd.addEventListener("submit", async(e)=>{
-            e.preventDefault();
-            let img = formAdd.dataset.img
+        
+          const formEdit = document.querySelector("#formEdit")
+            let img = formEdit?.dataset.img
             const file = imgUpload.files[0];
             if(file) {
                 const formData = new FormData();
@@ -66,7 +87,9 @@ import axios from "axios";
             console.log(product)
             const data = await axios.patch(`http://localhost:8080/api/products/${_id}`,product);
             location.href = "/admin/productList";
-        })
+                }     
+            });
+          })
     }
  }
  export default UpdateProduct;
