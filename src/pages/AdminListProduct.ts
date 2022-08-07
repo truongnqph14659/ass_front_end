@@ -1,3 +1,4 @@
+import { sendHeader, errorShow } from './../api/user';
 import axios from "axios";
 import AdminHeader from "../components/admin/HeaderAdmin";
 import Sidebar from "../components/admin/SiderAdmin";
@@ -11,25 +12,30 @@ const AdminListProductPage = {
                 ${Sidebar.render()}
             </div>
             <div class="grow px-4">
-            <table class="table table-bordered">
+            <h1><b>List Product</b></h1>
+            <a href="/admin/product/add" class="btn btn-primary my-3" >Add Product</a>
+            <table class="table table-bordered mt-3">
             <thead>
                 <tr>
                     <th>#</th>
                     <th>Name</th>
                     <th>Image</th>
                     <th>Price</th>
+                    <th colspan="2" class ="text-center">Action</th>
                 </tr>
             </thead>
             <tbody>
-                ${data.map((item, index) => /* html */ `
+                ${data.map((item:any, index:any) => /* html */ `
                     <tr>
                         <td>${index + 1}</td>
                         <td>${item.name}</td>
-                        <td><img src="${item.image}" alt="hiiii" /></td>
+                        <td><img src="${item.image}" width="150px" alt="hiiii" /></td>
                         <td>${item.price}</td>
                         <td>
-                            <button class="btn btn-danger btn-remove" data-id=${item.id}>Remove</button> <br>
-                            <a href="/categoryProduct/${item.id}/edit" class="btn btn-danger btn-update">Update</a>
+                            <button class="btn btn-danger btn-remove" data-id=${item._id}>Remove</button> <br>
+                        </td>
+                        <td>
+                            <a href="/admin/products/${item._id}" class="btn btn-info btn-update">Update</a>
                         </td>
                     </tr>
                 `).join("")}
@@ -38,6 +44,28 @@ const AdminListProductPage = {
             </div>
         </div>
         `
+    },
+    afterRender(){
+        const btns = document.querySelectorAll('.btn-remove')
+        btns.forEach((btn:any) => {
+            const id = btn.dataset.id;
+            console.log(id);
+            
+    
+            btn.addEventListener('click', async() => {
+                if(btn.classList.contains('btn-remove')){
+                    const confirm = window.confirm('Are you sure remove?')
+                    if(confirm){
+                        try {
+                            await axios.delete(`http://localhost:8080/api/products/${id}`,sendHeader)
+                            location.href='/admin/productList'
+                        } catch (error) {
+                            errorShow(error)
+                        }
+                    }
+                }
+            })
+        })
     }
 }
 

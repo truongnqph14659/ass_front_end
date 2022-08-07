@@ -1,11 +1,11 @@
 const HeaderHome = {
     render: () => {
         let userAcc
-        if (JSON.parse(localStorage.getItem('user') || "false") && JSON.parse(localStorage.getItem('user')|| "false").role == 0 ){
+        if (JSON.parse(localStorage.getItem('user') || "false")){
             const name = JSON.parse(localStorage.getItem('user')|| "false").name;
             userAcc = `
             <span>${name}</span>
-            <i class="fa-solid fa-wheelchair cursor-pointer"></i>
+            <i class="fa-solid cursor-pointer lognout fa-arrow-right-from-bracket"></i>
           ` 
         }else{
             userAcc=`
@@ -29,7 +29,7 @@ const HeaderHome = {
                     </li>
                     <li>
                         <i class="fa-solid fa-cart-shopping"></i>
-                        <a href="#">Giỏ hàng</a>
+                        <a href="Show">Giỏ hàng</a>
                     </li>
                     <li>
                         ${userAcc}

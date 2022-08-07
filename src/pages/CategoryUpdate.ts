@@ -1,10 +1,12 @@
 import AdminHeader from "../components/admin/HeaderAdmin";
 import Sidebar from "../components/admin/SiderAdmin";
-import ListCategory from "../components/admin/listCategory";
+import updateCategory from "../components/admin/updateCategory"
 
-const Category = {
+const editCategory = {
     
-    async render(){
+    async render(id:any){
+        console.log(id);
+        
         return /* html */ `
         ${AdminHeader.render()}
         <div class="flex mt-4 divide-x">
@@ -12,14 +14,14 @@ const Category = {
                 ${Sidebar.render()}
             </div>
             <div class="grow px-4">
-                ${await ListCategory.render()}
+                ${await updateCategory.render(id)}
             </div>
         `
     },
-    afterRender(){
-        if(ListCategory.afterRender){
-                ListCategory.afterRender()
+    afterRender(_id:any){
+        if(updateCategory.afterRender){
+                updateCategory.afterRender(_id)
         }
     }
 }
-export default Category;
+export default editCategory;

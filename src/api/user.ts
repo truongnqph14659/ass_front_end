@@ -1,3 +1,4 @@
+import swal from 'sweetalert';
 import instance from "./config";
 interface user {
     name?:string,
@@ -10,4 +11,15 @@ export const signup = (data:user)=>{
 }
 export const signin = (data:user)=>{
     return instance.post('/user/signin',data)
+}
+export const sendHeader = 
+{ headers: {
+        "content-type": "application/json",
+        Authorization:`Bearer ${JSON.parse(localStorage.getItem('user') || "false").token}`
+      }
+}
+export const errorShow = (error:any)=>{ swal({
+    title:"Admin only!",
+    dangerMode: true,
+    })
 }
