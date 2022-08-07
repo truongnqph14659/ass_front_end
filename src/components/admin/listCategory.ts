@@ -14,7 +14,7 @@ import axios from "axios"
                 </tr>
         </thead>
         <tbody>
-            ${data.map((item, index) => /* html */ `
+            ${data.map((item:any, index:any) => /* html */ `
                 <tr>
                     <td>${index + 1}</td>
                     <td>${item.name}</td>
@@ -31,12 +31,8 @@ import axios from "axios"
 },
 afterRender(){
     const btns = document.querySelectorAll('.btn-remove')
-    console.log(btns);
-    btns.forEach((btn) => {
+    btns.forEach((btn:any) => {
         const id = btn.dataset.id;
-        console.log(id);
-        
-
         btn.addEventListener('click', async() => {
             if(btn.classList.contains('btn-remove')){
                 const confirm = window.confirm('Are you sure remove?')

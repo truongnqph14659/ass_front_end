@@ -9,7 +9,7 @@ const AdminHeader = {
                         </form>
                         <div>
                         <span>Xin chào Admin</span>
-                        <button type="button" class="btn btn-primary">Logn out</button>
+                        <i class="fa-solid cursor-pointer text-2xl lognout fa-arrow-right-from-bracket"></i>
                         </div>
                 </div>
             `
