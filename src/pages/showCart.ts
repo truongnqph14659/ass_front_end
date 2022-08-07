@@ -6,7 +6,12 @@ const ShowCart = {
             ${HeaderHome.render()}
             ${Cart.render()}
         `
-    }
+    },
+    afterRender(id:any){
+        if (Cart.afterRender) {
+            Cart.afterRender()
+        }
+      }
 }
 
 export default ShowCart;

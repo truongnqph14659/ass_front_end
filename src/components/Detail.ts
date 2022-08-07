@@ -4,7 +4,7 @@ import { addToCart } from "../utils/cart";
 const DetailProduct = {
     render: async (id:any) => {
         const {data} = await axios.get(`http://localhost:8080/api/products/${id}`)
-        console.log(data);
+        // console.log(data);
         return /* html */ `
             <div class="mt-4 mx-[10%]">
                 <h1 class="text-xl">${data.name}</h1>
@@ -25,9 +25,9 @@ const DetailProduct = {
     },
     afterRender(id:any){
         const Cart = document.querySelector('.Cart')
-       console.log(Cart);
        Cart?.addEventListener('click',async()=>{ 
             const {data} = await axios.get(`http://localhost:8080/api/products/${id}`)
+            console.log(data);
             addToCart({...data,quantity:1},()=>{
                 console.log('ok');
             })
