@@ -1,3 +1,4 @@
+import { sendHeader, errorShow } from './../api/user';
 import axios from "axios";
 import AdminHeader from "../components/admin/HeaderAdmin";
 import Sidebar from "../components/admin/SiderAdmin";
@@ -24,7 +25,7 @@ const AdminListProductPage = {
                 </tr>
             </thead>
             <tbody>
-                ${data.map((item, index) => /* html */ `
+                ${data.map((item:any, index:any) => /* html */ `
                     <tr>
                         <td>${index + 1}</td>
                         <td>${item.name}</td>
@@ -46,8 +47,7 @@ const AdminListProductPage = {
     },
     afterRender(){
         const btns = document.querySelectorAll('.btn-remove')
-        console.log(btns);
-        btns.forEach((btn) => {
+        btns.forEach((btn:any) => {
             const id = btn.dataset.id;
             console.log(id);
             
@@ -56,9 +56,13 @@ const AdminListProductPage = {
                 if(btn.classList.contains('btn-remove')){
                     const confirm = window.confirm('Are you sure remove?')
                     if(confirm){
-                        axios.delete(`http://localhost:8080/api/products/${id}`)
+                        try {
+                            await axios.delete(`http://localhost:8080/api/products/${id}`,sendHeader)
+                            location.href='/admin/productList'
+                        } catch (error) {
+                            errorShow(error)
+                        }
                     }
-                    location.href='/admin/productList'
                 }
             })
         })
