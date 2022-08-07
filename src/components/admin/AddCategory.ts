@@ -1,6 +1,5 @@
 import { sendHeader, errorShow } from './../../api/user';
 import axios from "axios";
-import swal from "sweetalert";
  const AddCategory = {
     async render(){
         return /* html */ `
