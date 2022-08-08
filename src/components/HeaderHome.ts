@@ -29,7 +29,7 @@ const HeaderHome = {
                     </li>
                     <li>
                         <i class="fa-solid fa-cart-shopping"></i>
-                        <a href="Show">Giỏ hàng</a>
+                        <a href="/Show">Giỏ hàng</a>
                     </li>
                     <li>
                         ${userAcc}
