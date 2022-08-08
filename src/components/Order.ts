@@ -102,14 +102,20 @@ const Cart = {
           const cart: any = localStorage.getItem("cart");
           const carts = JSON.parse(cart);
           let total = 0;
-          carts.forEach((item: any) => {
-            total += Number(item.price) * Number(item.quantity);
-          });
-          const a = Math.floor(Math.random() * 2000) + 1000;
-          addOrder(a, total, () => {
-            localStorage.setItem("cart", JSON.stringify([]));
-            location.pathname = '/'
-          });
+          const user: any = localStorage.getItem("user");
+          if (user) {
+            const users = JSON.parse(user);
+            carts.forEach((item: any) => {
+              total += Number(item.price) * Number(item.quantity);
+            });
+            const a = Math.floor(Math.random() * 2000) + 1000;
+            addOrder(a, total, () => {
+              localStorage.setItem("cart", JSON.stringify([]));
+              location.pathname = "/";
+            });
+          } else {
+            location.pathname = "/signin";
+          }
         }
       });
     });
