@@ -3,7 +3,7 @@ const MenuHeader = {
         return /* html */ `
                 <div class="flex justify-between mx-[10%]">
                     <ul class="menu">
-                        <li><a href="#">Trang chủ</a></li>
+                        <li><a href="/">Trang chủ</a></li>
                         <li>
                             <a href="#">Điện thoại</a>
                         </li>
